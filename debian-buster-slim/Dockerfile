@@ -25,8 +25,9 @@ RUN chown -R ${USER}: ${STEAMCMD_DIR}
 COPY exec-steamcmd.sh /usr/local/bin/steamcmd
 
 # Update steamcmd to latest version
-USER ${USER}
 RUN steamcmd +quit
+
+USER ${USER}
 
 ENTRYPOINT ["steamcmd"]
 CMD ["+help", "+quit"]
