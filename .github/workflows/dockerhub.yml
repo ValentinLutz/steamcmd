@@ -1,0 +1,15 @@
+name: Trigger automated builds on dockerhub
+
+on:
+  schedule:
+    - cron: "0 18 * * SUN"
+
+jobs:
+  trigger_builds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - shell: bash
+        env:
+          TRIGGER_ENDPOINT: ${{ secrets.DOCKERHUB_TRIGGER }}
+        run: curl -X POST $TRIGGER_ENDPOINT
